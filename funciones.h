@@ -37,34 +37,37 @@ int idUnico(int id) {
 }
 void registrarLibro() {
 int cantidad;
-
+    printf("-----------------------------------------------------------------------------\n");
     printf("Cuantos libros desea registrar? (maximo %d): ", maxLibros - numLibros);
     while (scanf("%d", &cantidad) != 1 || cantidad < 1 || cantidad > (maxLibros - numLibros)) {
         limpiarBuffer();
+        printf("-----------------------------------------------------------------------------\n");
         printf("Cantidad invalida. Intente nuevamente: ");
     }
     limpiarBuffer();
 
 for (int i = 0; i < cantidad; i++) {
-        printf("\n--- Libro %d ---\n", i + 1);
+printf("-----------------------------------------------------------------------------\n");
+printf("--------------------------------- Libro %d ----------------------------------\n", i + 1);
 biblioteca[numLibros].Id = idRandom();
 
-printf("ID del libro: %d\n",biblioteca[numLibros].Id);
+printf("|ID del libro: %d\n",biblioteca[numLibros].Id);
 
 
-printf("Ingrese el titulo del libro (Maximo 100 caracteres): ");
+printf("|Ingrese el titulo del libro (Maximo 100 caracteres): ");
     fgets(biblioteca[numLibros].Titulo, 100, stdin);
     biblioteca[numLibros].Titulo[strcspn(biblioteca[numLibros].Titulo, "\n")] = 0;
 
 
-printf("Ingrese el autor del libro (Maximo 50 caracteres): ");
+printf("|Ingrese el autor del libro (Maximo 50 caracteres): ");
     fgets(biblioteca[numLibros].Autor, 50, stdin);
     biblioteca[numLibros].Autor[strcspn(biblioteca[numLibros].Autor,"\n")] = 0;
 
 
-printf("Ingrese el anio de publicacion: ");
+printf("|Ingrese el anio de publicacion: ");
     while (scanf("%d", &biblioteca[numLibros].Año) != 1) {
         limpiarBuffer();
+        printf("-----------------------------------------------------------------------------\n");
         printf("Anio invalido. Ingrese nuevamente: ");
     }
     limpiarBuffer();
@@ -77,25 +80,28 @@ numLibros ++;
 }
 void mostrarLibros() {
     if (numLibros == 0) {
-        printf("No hay libros en la biblioteca.\n");
+        printf("-----------------------------------------------------------------------------\n");
+        printf("-----------------------No hay libros en la biblioteca------------------------\n");
         goto E;
     }
-
-    printf("\n%-5s %-30s %-20s %-10s %-12s\n", "ID", "Titulo", "Autor", "Anio", "Estado");
+printf("-----------------------------------------------------------------------------\n");
+    printf("%-5s %-30s %-20s %-10s %-12s\n", "ID", "Titulo", "Autor", "Anio", "Estado");
     printf("-----------------------------------------------------------------------------\n");
     for (int i = 0; i < numLibros; i++) {
-        printf("%-5d %-30s %-20s %-10d %-12s\n",
+        printf("|%-5d %-30s %-20s %-10d %-12s\n",
             biblioteca[i].Id, biblioteca[i].Titulo,biblioteca[i].Autor, biblioteca[i].Año,biblioteca[i].Estado);
     }
     E:;
 }
 void mostrarIdLibros() {
     if (numLibros == 0) {
-        printf("No hay libros en la biblioteca.\n");
+        printf("-----------------------------------------------------------------------------\n");
+        printf("-----------------------No hay libros en la biblioteca------------------------\n");
         goto E;
     }
-    printf("\n%-5s %-30s\n", "ID", "Titulo");
     printf("-----------------------------------------------------------------------------\n");
+    printf("|%-5s %-30s\n", "ID", "Titulo");
+    printf("------------------------------\n");
     for (int i = 0; i < numLibros; i++) {
         printf("%-5d %-30s\n",
             biblioteca[i].Id, biblioteca[i].Titulo);
@@ -130,7 +136,9 @@ A:;
     
 }
 void actualizarEstado() {
+    mostrarIdLibros();
     int id;
+    if (numLibros!=0){
     printf("Ingrese el ID del libro: ");
     scanf("%d", &id);
 
@@ -148,8 +156,10 @@ void actualizarEstado() {
     printf("Libro no encontrado.\n");
 
     C:;
-}
+    }}
 void eliminarLibro() {
+    mostrarIdLibros();
+    if (numLibros!=0){
     int id;
     printf("Ingrese el ID del libro a eliminar: ");
     scanf("%d", &id);
@@ -167,4 +177,5 @@ void eliminarLibro() {
     printf("Libro no encontrado.\n");
 
     D:;
+}
 }
