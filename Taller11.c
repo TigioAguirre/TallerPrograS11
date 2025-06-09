@@ -2,13 +2,16 @@
 void main() {
     srand(time(NULL)); 
     do {
-        printf("\n--- Menu Biblioteca ---\n");
-        printf("1. Registrar libro\n");
-        printf("2. Mostrar todos los libros\n");
-        printf("3. Buscar libro\n");
-        printf("4. Actualizar estado de libro\n");
-        printf("5. Eliminar libro\n");
-        printf("6. Salir\n");
+        printf("-----------------------------------------------------------------------------\n");
+        printf("------------------------------ Menu Biblioteca ------------------------------\n");
+        printf("-----------------------------------------------------------------------------\n");
+        printf("|   1. Registrar libro\n");
+        printf("|   2. Mostrar todos los libros\n");
+        printf("|   3. Buscar libro\n");
+        printf("|   4. Actualizar estado de libro\n");
+        printf("|   5. Eliminar libro\n");
+        printf("|   6. Salir\n");
+        printf("-----------------------------------------------------------------------------\n");
         printf("Seleccione una opcion: ");
         scanf("%d", &opcion);
         limpiarBuffer();
@@ -24,10 +27,17 @@ void main() {
             break;
             case 5: eliminarLibro(); 
             break;
-            case 6: printf("Salida correctamente\n"); 
+            case 6: 
+            printf("-----------------------------------------------------------------------------\n");
+            printf("-----------------------------Salida correctamente----------------------------\n"); 
+            printf("-----------------------------------------------------------------------------\n");
             break;
-            default: printf("Opcion invalida. Intente nuevamente.\n");
+            default: 
+            printf("-----------------------------------------------------------------------------\n");
+            printf("---------------------Opcion invalida. Intente nuevamente---------------------\n");
+            printf("-----------------------------------------------------------------------------\n");
         }
     } while (opcion != 6);
 
 }
+
